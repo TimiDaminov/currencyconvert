@@ -17,6 +17,7 @@ export default function App() {
     getAllCurrency(setAllCurrency);
     console.log(converted);
   }, [amount, currency]);
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -29,19 +30,22 @@ export default function App() {
         {currency.from}
         {currency.to}
       </Text>
-      <SelectList
-        data={allCurrency.map((currency) => currency.symbol)}
-        style={styles.selectList}
-        setSelected={(value) => setCurrency({ ...currency, from: value })}
-        notFoundText="No such currency found"
-      />
-      <SelectList
-        data={allCurrency.map((currency) => currency.symbol)}
-        style={styles.selectList}
-        setSelected={(value) => setCurrency({ ...currency, to: value })}
-        notFoundText="No such currency found"
-        searchPlaceholder="Search currency"
-      />
+      <View style={styles.selectLists}>
+        <SelectList
+          data={allCurrency.map((currency) => currency.symbol)}
+          style={styles.selectListFrom}
+          setSelected={(value) => setCurrency({ ...currency, from: value })}
+          notFoundText="No such currency found"
+        />
+
+        <SelectList
+          data={allCurrency.map((currency) => currency.symbol)}
+          style={styles.selectListTo}
+          setSelected={(value) => setCurrency({ ...currency, to: value })}
+          notFoundText="No such currency found"
+          searchPlaceholder="Search currency"
+        />
+      </View>
       <Text style={styles.text}>{converted.toFixed(4)}</Text>
     </View>
   );
@@ -54,6 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "#fff",
+    padding: 20,
   },
   text: {
     color: "#000",
@@ -65,5 +70,17 @@ const styles = StyleSheet.create({
     height: 30,
     borderWidth: 1,
     borderColor: "#000",
+  },
+  selectLists: {
+    marginTop: 15,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    width: "100%",
+  },
+  selectListFrom: {
+    marginRight: 10,
+  },
+  selectListTo: {
+    marginLeft: 10,
   },
 });

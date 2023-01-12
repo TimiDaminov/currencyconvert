@@ -1,7 +1,9 @@
+import { API_KEY } from "@env";
+
 export const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "9485afe492mshf2618eab7e26179p187101jsnf9b49b61320a",
+    "X-RapidAPI-Key": API_KEY,
     "X-RapidAPI-Host": "currency-converter18.p.rapidapi.com",
   },
 };
